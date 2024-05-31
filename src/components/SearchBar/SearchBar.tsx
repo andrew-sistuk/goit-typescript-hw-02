@@ -1,18 +1,26 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { IoSearchOutline } from "react-icons/io5";
 
-import css from './SearchBar.module.css';
 
-const SearchBar = ({changeFilter}) => {
-    function handleSubmit(evt) { 
+import { Props } from './SearchBar.types';
+
+import css from './SearchBar.module.css';
+import { FormEvent } from 'react';
+
+
+const SearchBar = ({changeFilter}: Props ) => {
+    function handleSubmit(evt: FormEvent<HTMLFormElement>) { 
         evt.preventDefault();
-        const { searchBar } = evt.target.elements;
+        const evtForm = evt.target as HTMLFormElement;
+        const elements = evtForm.elements as HTMLFormControlsCollection;
+        const searchBar = elements.namedItem('searchBar') as HTMLInputElement;
+
         if(!searchBar.value.trim()){
             toast.error('You must write some text!');
             return;
         }
         changeFilter(searchBar.value.trim());
-        evt.target.reset();
+        evtForm.reset();
     }
     
   return (

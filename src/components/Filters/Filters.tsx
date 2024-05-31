@@ -1,4 +1,5 @@
 import css from './Filters.module.css';
+import { Props } from './Filters.types';
 
 const Filters = ({
   orientation,
@@ -10,7 +11,7 @@ const Filters = ({
   handleSetContentFilter,
   handleSetOrderBy,
   resetFilters,
-}) => {
+}: Props) => {
 
   return (
     <div className={css.filters}>

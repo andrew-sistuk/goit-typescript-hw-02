@@ -1,6 +1,7 @@
 import css from './ImageCard.module.css';
+import { Props } from './ImageCard.types';
 
-const ImageCard = ({ urls, user: { username }, likes, description, openModal }) => {
+const ImageCard = ({ urls, user: { username }, likes, description, openModal }: Props) => {
   const alt = `${description}, photo by ${username}`;
   return (
     <div className={css.conteiner}>
@@ -11,7 +12,7 @@ const ImageCard = ({ urls, user: { username }, likes, description, openModal }) 
         onClick={() => {
           openModal(urls.regular, alt);
         }}
-        loading="lazzy"
+        loading="lazy"
       />
       <div className={css['img-card']}>
         <span>Likes: {likes} </span>
