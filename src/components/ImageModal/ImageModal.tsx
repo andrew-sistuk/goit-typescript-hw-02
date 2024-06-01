@@ -2,8 +2,9 @@ import ReactModal from 'react-modal';
 import { MdOutlineClose } from 'react-icons/md';
 
 import css from './ImageModal.module.css';
+import { Props } from './ImageModal.types';
 
-const ImageModal = ({ isOpen, imgSrc, imgAlt, handleClose }) => {
+const ImageModal = ({ isOpen, imgSrc, imgAlt, handleClose }: Props) => {
   return (
     <ReactModal
       style={{
@@ -16,7 +17,6 @@ const ImageModal = ({ isOpen, imgSrc, imgAlt, handleClose }) => {
         },
       }}
       isOpen={isOpen}
-      appElement={document.getElementById('root')}
       shouldCloseOnEsc={true}
       shouldCloseOnOverlayClick={true}
       preventScroll={true}
