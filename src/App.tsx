@@ -1,7 +1,7 @@
 import 'modern-normalize';
 import './App.css';
 
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 // import { ImageGallery, SearchBar } from 'components/';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
@@ -12,11 +12,12 @@ import Filters from './components/Filters/Filters';
 // import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 
 import fetchPhotos from './apiService/unsplashApi';
+import { Orientation, ContentFilter, OrderBy, Color, ObjPhoto } from './apiService/unsplashApi.types';
 import { useInView } from 'react-intersection-observer';
 
 function App() {
   const [query, setQuery] = useState('');
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<ObjPhoto[]>([]);
   //pagination
 
   const [page, setPage] = useState(1);
@@ -24,10 +25,10 @@ function App() {
   const [err, setErr] = useState(false);
 
   //filters
-  const [orientation, setOrientation] = useState('');
-  const [color, setColor] = useState('');
-  const [content_filter, setContentFilter] = useState('low');
-  const [order_by, setOrderBy] = useState('relevant');
+  const [orientation, setOrientation] = useState<Orientation>('');
+  const [color, setColor] = useState<Color>('');
+  const [content_filter, setContentFilter] = useState<ContentFilter>('low');
+  const [order_by, setOrderBy] = useState<OrderBy>('relevant');
 
   //modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,7 +53,11 @@ function App() {
         setErr(false);
         const data = await fetchPhotos(query, page, orientation, color, content_filter, order_by);
 
-        if(parseInt(data.total_pages) === parseInt(page) || parseInt(data.total_pages) === 0 || parseInt(data.total_pages) === 1) {
+        if (
+          parseInt(data.total_pages) === page ||
+          parseInt(data.total_pages) === 0 ||
+          parseInt(data.total_pages) === 1
+        ) {
           setLoading(false);
         }
 
@@ -78,7 +83,7 @@ function App() {
     }
   }, [inView]);
 
-  function changeQuery(value) {
+  function changeQuery(value: string) {
     setQuery(value);
     setPage(1);
   }
@@ -95,7 +100,7 @@ function App() {
     setPage(1);
   }
 
-  function handleOpenModal(currImg, currAlt) {
+  function handleOpenModal(currImg: string, currAlt: string) {
     setImgSrc(currImg);
     setImgAlt(currAlt);
     setIsModalOpen(prev => !prev);
@@ -111,20 +116,25 @@ function App() {
 
   // вірно фільтри реалізовувати як елементи форми було б. Але згідно з тз,
   // і так як це я додав їх від себе я виніс функціонал в окрему компоненту
-  function handleSetOrientation(evt) {
-    setOrientation(evt.target.value);
+  function evtValue<T>(evt: ChangeEvent<HTMLSelectElement>): T {
+    const evtForm = evt.target as HTMLSelectElement;
+    return evtForm.value as T;
+  }
+
+  function handleSetOrientation(evt: ChangeEvent<HTMLSelectElement>) {
+    setOrientation(evtValue<Orientation>(evt));
     setPage(1);
   }
-  function handleSetColor(evt) {
-    setColor(evt.target.value);
+  function handleSetColor(evt: ChangeEvent<HTMLSelectElement>) {
+    setColor(evtValue<Color>(evt));
     setPage(1);
   }
-  function handleSetContentFilter(evt) {
-    setContentFilter(evt.target.value);
+  function handleSetContentFilter(evt: ChangeEvent<HTMLSelectElement>) {
+    setContentFilter(evtValue<ContentFilter>(evt));
     setPage(1);
   }
-  function handleSetOrderBy(evt) {
-    setOrderBy(evt.target.value);
+  function handleSetOrderBy(evt: ChangeEvent<HTMLSelectElement>) {
+    setOrderBy(evtValue<OrderBy>(evt));
     setPage(1);
   }
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FetchPhotos, Options } from './unsplashApi.types';
+import { FetchPhotos, Options, fetchData } from './unsplashApi.types';
 
 axios.defaults.baseURL = 'https://api.unsplash.com';
 axios.defaults.headers.common['Accept-Version'] = 'v1';
@@ -33,7 +33,7 @@ const fetchPhotos: FetchPhotos = async (
     options['color'] = color;
   }
 
-  const response = await axios.get<string>('/search/photos', {
+  const response = await axios.get<fetchData>('/search/photos', {
     params: options,
   });
 

@@ -15,6 +15,22 @@ export type Color =
   | 'teal'
   | 'blue';
 
+export type ObjPhoto = {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  user: { username: string };
+  likes: number;
+  description: string;
+};
+
+export type fetchData = {
+  total_pages: string;
+  results: ObjPhoto[];
+};
+
 export type FetchPhotos = (
   query: string,
   page: number,
@@ -22,7 +38,7 @@ export type FetchPhotos = (
   color: Color,
   content_filter: ContentFilter,
   order_by: OrderBy
-) => Promise<string>;
+) => Promise<fetchData>;
 
 export type Options = {
   query: string;

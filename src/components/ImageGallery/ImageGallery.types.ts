@@ -12,5 +12,4 @@ export type Props = {
     description: string;
   }[];
   openModal: (currImg: string, currAlt: string) => void;
-  children: React.ReactElement
 }
