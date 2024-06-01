@@ -7,4 +7,10 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
+  resolve: {
+    alias: {
+      components: '/src/components',
+      apiService: '/src/apiService',
+    },
+  },
 });

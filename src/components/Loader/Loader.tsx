@@ -1,5 +1,6 @@
 import { ProgressBar } from 'react-loader-spinner';
 import { forwardRef } from 'react';
+
 import { Props } from './Loader.types';
 
 const Loader = forwardRef<HTMLDivElement, Props>(function Loader(props, ref) {

@@ -3,4 +3,4 @@ export type Props = {
   imgSrc: string;
   imgAlt: string;
   handleClose: () => void;
-}
+};

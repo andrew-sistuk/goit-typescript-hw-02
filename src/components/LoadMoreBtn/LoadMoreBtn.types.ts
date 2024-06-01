@@ -1,3 +1,3 @@
 export type Props = {
-    loadMore: () => void
-}
+  loadMore: () => void;
+};

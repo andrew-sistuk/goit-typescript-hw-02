@@ -8,7 +8,6 @@ axios.defaults.headers.common['Authorization'] =
 
 axios.defaults.params = { per_page: 15 };
 
-
 const fetchPhotos: FetchPhotos = async (
   query,
   page,
@@ -16,8 +15,7 @@ const fetchPhotos: FetchPhotos = async (
   color,
   content_filter,
   order_by
-) =>  {
-
+) => {
   const options: Options = {
     query,
     page,
@@ -42,6 +40,6 @@ const fetchPhotos: FetchPhotos = async (
   console.log(response.data);
 
   return response.data;
-}
+};
 
 export default fetchPhotos;

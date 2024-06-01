@@ -1,3 +1,3 @@
 export type Props = {
-  visible: boolean
-}
+  visible: boolean;
+};

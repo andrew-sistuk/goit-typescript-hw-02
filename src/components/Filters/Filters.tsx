@@ -12,7 +12,6 @@ const Filters = ({
   handleSetOrderBy,
   resetFilters,
 }: Props) => {
-
   return (
     <div className={css.filters}>
       <label className={css.label} htmlFor="orientation">

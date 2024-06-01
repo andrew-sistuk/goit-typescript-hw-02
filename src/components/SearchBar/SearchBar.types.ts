@@ -1,3 +1,3 @@
 export type Props = {
-  changeFilter: (value: string) => void
-}
+  changeFilter: (value: string) => void;
+};

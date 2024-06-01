@@ -2,18 +2,11 @@ import 'modern-normalize';
 import './App.css';
 
 import { ChangeEvent, useEffect, useState } from 'react';
-// import { ImageGallery, SearchBar } from 'components/';
-import SearchBar from './components/SearchBar/SearchBar';
-import ImageGallery from './components/ImageGallery/ImageGallery';
-import Loader from './components/Loader/Loader';
-import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import ImageModal from './components/ImageModal/ImageModal';
-import Filters from './components/Filters/Filters';
+import { useInView } from 'react-intersection-observer';
+import { ErrorMessage, SearchBar, ImageGallery, Loader, ImageModal, Filters } from 'components';
 // import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 
-import fetchPhotos from './apiService/unsplashApi';
-import { Orientation, ContentFilter, OrderBy, Color, ObjPhoto } from './apiService/unsplashApi.types';
-import { useInView } from 'react-intersection-observer';
+import { fetchPhotos, Orientation, ContentFilter, OrderBy, Color, ObjPhoto } from 'apiService';
 
 function App() {
   const [query, setQuery] = useState('');

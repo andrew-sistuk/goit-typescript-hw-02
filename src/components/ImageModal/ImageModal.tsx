@@ -9,11 +9,11 @@ const ImageModal = ({ isOpen, imgSrc, imgAlt, handleClose }: Props) => {
     <ReactModal
       style={{
         overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
         content: {
-            backgroundColor: 'transparent',
-            border: 'transparent'
+          backgroundColor: 'transparent',
+          border: 'transparent',
         },
       }}
       isOpen={isOpen}

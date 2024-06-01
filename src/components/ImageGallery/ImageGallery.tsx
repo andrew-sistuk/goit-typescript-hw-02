@@ -1,6 +1,7 @@
-import css from './ImageGallery.module.css';
-import ImageCard from '../ImageCard/ImageCard';
 import { nanoid } from 'nanoid';
+
+import { ImageCard } from 'components';
+import css from './ImageGallery.module.css';
 import { Props } from './ImageGallery.types';
 
 const ImageGallery = ({ photos, openModal }: Props) => {
