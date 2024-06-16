@@ -15,6 +15,7 @@ function App() {
 
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [loadingFirst, setLoadingFirst] = useState(false);
   const [err, setErr] = useState(false);
 
   //filters
@@ -41,7 +42,11 @@ function App() {
           return;
         }
 
-        setLoading(true);
+        if (page === 1) {
+          setLoadingFirst(true);
+        } else {
+          setLoadingFirst(false);
+        }
 
         setErr(false);
         const data = await fetchPhotos(query, page, orientation, color, content_filter, order_by);
@@ -59,6 +64,8 @@ function App() {
             return [...prevItems, ...data.results];
           });
         } else {
+          setLoading(true);
+          setLoadingFirst(false);
           setPhotos(data.results);
         }
       } catch {
@@ -77,7 +84,13 @@ function App() {
   }, [inView]);
 
   function changeQuery(value: string) {
-    setQuery(value);
+    setQuery(prevValue => {
+      if (prevValue === value) {
+        setPhotos([]);
+      }
+      return value;
+    });
+    // setQuery(value);
     setPage(1);
   }
 
@@ -150,8 +163,8 @@ function App() {
       {/* щоб нуля не було */}
       {!!photos.length && <ImageGallery photos={photos} openModal={handleOpenModal} />}
       {/*loading && <LoadMoreBtn loadMore={loadMore} /> */}
+      {loadingFirst && <Loader visible={loadingFirst} />}
       {loading && <Loader ref={ref} visible={loading} />}
-      {/* <Loader visible={loading} /> */}
       {imgSrc && (
         <ImageModal
           isOpen={isModalOpen}
