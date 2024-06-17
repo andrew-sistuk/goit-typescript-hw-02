@@ -14,7 +14,13 @@ const SearchBar = ({ changeFilter }: Props) => {
     const searchBar = elements.namedItem('searchBar') as HTMLInputElement;
 
     if (!searchBar.value.trim()) {
-      toast.error('You must write some text!');
+      toast.error('You must write some text!', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
       return;
     }
     changeFilter(searchBar.value.trim());
