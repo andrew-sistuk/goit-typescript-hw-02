@@ -1,10 +1,16 @@
 import axios from 'axios';
 import { FetchPhotos, Options, fetchData } from './unsplashApi.types';
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
+console.log(apiKey);
+
 axios.defaults.baseURL = 'https://api.unsplash.com';
 axios.defaults.headers.common['Accept-Version'] = 'v1';
-axios.defaults.headers.common['Authorization'] =
-  'Client-ID 8nQ0M-aBYfkEhBu7oUnQmCJnSQcd3XyKBPTmc-X9Czg';
+// axios.defaults.headers.common['Authorization'] =
+//   'Client-ID 8nQ0M-aBYfkEhBu7oUnQmCJnSQcd3XyKBPTmc-X9Czg';
+
+axios.defaults.headers.common['Authorization'] = apiKey;
 
 axios.defaults.params = { per_page: 15 };
 
