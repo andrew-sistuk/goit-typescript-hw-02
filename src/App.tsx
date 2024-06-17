@@ -1,4 +1,5 @@
 import 'modern-normalize';
+import css from './App.module.css';
 import './App.css';
 
 import { ChangeEvent, useEffect, useState } from 'react';
@@ -145,7 +146,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className={css.container}>
       <SearchBar changeFilter={changeQuery} />
       <Filters
         orientation={orientation}
@@ -173,7 +174,7 @@ function App() {
           handleClose={handleClose}
         />
       )}
-    </>
+    </div>
   );
 }
 

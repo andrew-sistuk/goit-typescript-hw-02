@@ -7,8 +7,16 @@
 .search-bar {
   height: 100%;
   width: 50%;
-  padding: 10px 12px;
+  padding: 10px 32px 10px 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background-color: #242424;
+}
+
+.search-bar::placeholder {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-bar,

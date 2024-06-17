@@ -1,5 +1,8 @@
 .filters {
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   justify-content: space-around;
   align-items: flex-end;
   padding: 16px;
@@ -19,7 +22,7 @@
 }
 
 .select {
-  width: 150px;
+  width: 170px;
   border-radius: 8px;
   color: blueviolet;
   border-color: blueviolet;
